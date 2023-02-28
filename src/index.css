@@ -26,7 +26,11 @@ code {
     height: 100%;
 }
 
-/*select every children of arrangeCards*/
 .arrangeCards > *{
     margin: 5px;
+}
+
+.cardTitle{
+    font-size: 26px;
+    margin-right: auto;
 }

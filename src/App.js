@@ -1,24 +1,16 @@
 import Layout from "./components/layout";
 import Card from "./components/card";
-import axios from "axios";
 import {useEffect, useState} from "react";
+import {getPkmPage} from "./components/services/getPkmnByPage";
 
 function App() {
     const [data, setData] = useState(null);
-    async function getPkmData() {
-       return(
-           axios
-               .get(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20%22`)
-               .then((response) => {
-                   setData(response.data.results);
-               })
-               .catch((error) => {
-                   console.error(error);
-               })
-       )
-    }
     useEffect(() => {
-        getPkmData();
+        return () => {
+            getPkmPage().then( res => {
+                setData(res.results)
+            })
+        }
     }, []);
 
   return (
@@ -31,6 +23,7 @@ function App() {
                             <Card
                                 el={ el }
                                 id={ id }
+                                key={ id }
                             />
                         )
                     })

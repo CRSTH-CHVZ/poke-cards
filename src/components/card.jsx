@@ -1,20 +1,28 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import {getPkmInfo} from "./services/getPkmnById";
 
-const card = ({el, id} ) => {
-    console.log('el', el)
-    console.log('id', id)
+const Card = ({el, id} ) => {
+    const [pkmnInfo, setPkmnInfo] = useState(null);
+    const pkId = el.url.split('/')[6];
+    useEffect(() => {
+        return () => {
+            getPkmInfo( pkId ).then( res => {
+                setPkmnInfo(res)
+            })
+        }
+    }, []);
   return (
       <div className="card" style={{ width: '18rem', marginBottom: '20px'}} key={ id }>
-          <img src="" className="card-img-top" alt="..." />
+          <img src={ pkmnInfo?.sprites?.front_default } className="card-img-top"/>
               <div className="card-body">
-                  <h5 className="card-title">{ el.name }</h5>
-                  <p className="card-text"><strong>National ID:</strong> .</p>
-                  <p className="card-text"><strong>Attack:</strong> .</p>
-                  <p className="card-text"><strong>Defense:</strong> .</p>
-                  <p className="card-text"><strong>Speed:</strong> .</p>
+                  <h5 className="card-title cardTitle"><strong>{ el.name }</strong></h5>
+                  <p className="card-text"><strong>National ID:</strong> { pkmnInfo?.id }.</p>
+                  <p className="card-text"><strong>Attack:</strong> { pkmnInfo?.stats[1]?.base_stat }.</p>
+                  <p className="card-text"><strong>Defense:</strong> { pkmnInfo?.stats[2]?.base_stat }.</p>
+                  <p className="card-text"><strong>Speed:</strong> { pkmnInfo?.stats[5]?.base_stat }.</p>
               </div>
       </div>
   )
 }
 
-export default card
+export default Card
