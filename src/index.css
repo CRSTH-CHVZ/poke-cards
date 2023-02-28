@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.navbarStyle {
+  padding-left: 30px;
+}
+
 .arrangeCards{
     display: flex;
     flex-wrap: wrap;
