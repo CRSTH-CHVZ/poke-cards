@@ -4,7 +4,7 @@ const card = ({el, id} ) => {
     console.log('el', el)
     console.log('id', id)
   return (
-      <div className="card" style={{ width: '18rem'}} key={ id }>
+      <div className="card" style={{ width: '18rem', marginBottom: '20px'}} key={ id }>
           <img src="" className="card-img-top" alt="..." />
               <div className="card-body">
                   <h5 className="card-title">{ el.name }</h5>

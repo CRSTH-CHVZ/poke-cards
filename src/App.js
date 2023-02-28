@@ -24,17 +24,19 @@ function App() {
   return (
     <>
         <Layout />
-        {
-            data ? data.map( ( el, id ) => {
-                return(
-                    <Card
-                    el={ el }
-                    id={ id }
-                    />
-                )
-            })
-                : 'Sin elementos para mostrar'
-        }
+        <div className="d-flex p-2 flex-lg-wrap arrangeCards">
+            {
+                data ? data.map( ( el, id ) => {
+                        return(
+                            <Card
+                                el={ el }
+                                id={ id }
+                            />
+                        )
+                    })
+                    : 'Sin elementos para mostrar'
+            }
+        </div>
     </>
   );
 }
